@@ -7,10 +7,10 @@ const UserImage = ({ image, size = "60px" }) => {
                 width={size}
                 height={size}
                 alt="user"
-                src={`https://connect-c6ou.onrender.com/assets/${image}`}
+                src={`https://connect-c6ou.onrender.com/uploads/${image}`}
             />
         </Box>
-    )
-}
+    );
+};
 
 export default UserImage;
