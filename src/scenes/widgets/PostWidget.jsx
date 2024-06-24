@@ -59,7 +59,7 @@ const PostWidget = ({ postId, postUserId, name, description, location, picturePa
                         height="auto"
                         controls
                         style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-                        src={`https://connect-c6ou.onrender.com/assets/${picturePath}`}
+                        src={`https://connect-c6ou.onrender.com/uploads/${picturePath}`}
                     />
                 ) : (
                     <img
@@ -67,7 +67,7 @@ const PostWidget = ({ postId, postUserId, name, description, location, picturePa
                         height="auto"
                         alt="post"
                         style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-                        src={`https://connect-c6ou.onrender.com/assets/${picturePath}`}
+                        src={`https://connect-c6ou.onrender.com/uploads/${picturePath}`}
                     />
                 )
             )}
