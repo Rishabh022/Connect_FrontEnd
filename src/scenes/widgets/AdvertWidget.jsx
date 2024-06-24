@@ -45,7 +45,8 @@ import FlexBetween from 'components/FlexBetween';
 import WidgetWrapper from 'components/WidgetWrapper';
 
 const adData = [
-    title: "MikaCosmetics",
+ {
+        title: "MikaCosmetics",
         url: "https://connect-c6ou.onrender.com/uploads/info4.jpeg",
         company: "MikaCosmetics",
         website: "mikacosmetics.com",
