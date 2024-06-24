@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Typography, Button, TextField, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, Button, TextField, useMediaQuery, useTheme, CircularProgress } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -10,18 +10,18 @@ import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
 const registerSchema = yup.object().shape({
-    firstName: yup.string().required("Requried"),
-    lastName: yup.string().required("Requried"),
-    email: yup.string().email("Invalid Email").required("Requried"),
-    password: yup.string().required("Requried"),
-    location: yup.string().required("Requried"),
-    occupation: yup.string().required("Requried"),
-    picture: yup.string().required("Requried"),
+    firstName: yup.string().required("Required"),
+    lastName: yup.string().required("Required"),
+    email: yup.string().email("Invalid Email").required("Required"),
+    password: yup.string().required("Required"),
+    location: yup.string().required("Required"),
+    occupation: yup.string().required("Required"),
+    picture: yup.string().required("Required"),
 });
 
 const LoginSchema = yup.object().shape({
-    email: yup.string().email("Invalid Email").required("Requried"),
-    password: yup.string().required("Requried"),
+    email: yup.string().email("Invalid Email").required("Required"),
+    password: yup.string().required("Required"),
 });
 
 const initialValueRegister = {
@@ -41,6 +41,7 @@ const initialValueLogin = {
 
 const Form = () => {
     const [pageType, setPageType] = useState("login");
+    const [loading, setLoading] = useState(false); // State to track loading
     const { palette } = useTheme();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -48,9 +49,8 @@ const Form = () => {
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
 
-
     const register = async (values, onSubmitProps) => {
-        // this allows us to send form info with image
+        setLoading(true); // Start loading
         const formData = new FormData();
         for (let value in values) {
             formData.append(value, values[value]);
@@ -60,17 +60,18 @@ const Form = () => {
         const savedUserResponse = await fetch(`https://connect-c6ou.onrender.com/auth/register`, {
             method: "POST",
             body: formData,
-        }
-        );
+        });
         const savedUser = await savedUserResponse.json();
         onSubmitProps.resetForm();
 
         if (savedUser) {
             setPageType("login");
+            setLoading(false); // Stop loading
         }
     };
 
     const login = async (values, onSubmitProps) => {
+        setLoading(true); // Start loading
         const loggedInResponse = await fetch(`https://connect-c6ou.onrender.com/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -86,6 +87,7 @@ const Form = () => {
                 })
             );
             navigate("/home");
+            setLoading(false); // Stop loading
         }
     };
 
@@ -201,8 +203,7 @@ const Form = () => {
                             </>
                         )}
 
-                        {/* this section is for both login and register page here we use email and password as reuseable textfields */}
-
+                        {/* Login Form Fields */}
                         <TextField
                             label="Email"
                             onBlur={handleBlur}
@@ -225,7 +226,15 @@ const Form = () => {
                             sx={{ gridColumn: "span 4" }}
                         />
                     </Box>
-                    {/* Buttons for login and register page switching */}
+
+                    {/* Loading Spinner */}
+                    {loading && (
+                        <Box display="flex" justifyContent="center" mt={2}>
+                            <CircularProgress />
+                        </Box>
+                    )}
+
+                    {/* Buttons for login and register */}
                     <Box>
                         <Button
                             fullWidth
@@ -237,7 +246,8 @@ const Form = () => {
                                 color: palette.background.alt,
                                 "&:hover": { color: palette.primary.main },
                             }}
-                        >{isLogin ? "LOGIN" : "REGISTER"}
+                        >
+                            {isLogin ? "LOGIN" : "REGISTER"}
                         </Button>
                         <Typography
                             onClick={() => {
