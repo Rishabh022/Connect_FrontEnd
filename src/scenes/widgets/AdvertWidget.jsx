@@ -45,23 +45,23 @@ import FlexBetween from 'components/FlexBetween';
 import WidgetWrapper from 'components/WidgetWrapper';
 
 const adData = [
- {
+    {
         title: "MikaCosmetics",
-        url: "https://connect-c6ou.onrender.com/uploads/info4.jpeg",
+        url: "https://connect-c6ou.onrender.com/assets/info4.jpeg",
         company: "MikaCosmetics",
         website: "mikacosmetics.com",
         description: "Your pathway to stunning and immaculate beauty and made sure your skin is exfoliating skin and shining like light."
     },
     {
         title: "NovaTech",
-        url: "https://connect-c6ou.onrender.com/uploads/post10.jpg",
+        url: "https://connect-c6ou.onrender.com/assets/post10.jpg",
         company: "NovaTech",
         website: "novatech.com",
         description: "Innovative tech solutions for a modern world. Empowering businesses with cutting-edge technology."
     },
     {
         title: "HealthyLife",
-        url: "https://connect-c6ou.onrender.com/uploads/post9.jpg",
+        url: "https://connect-c6ou.onrender.com/assets/post9.jpg",
         company: "HealthyLife",
         website: "healthylife.com",
         description: "Your companion to a healthy lifestyle. Quality products for a better life."
@@ -113,3 +113,4 @@ const AdvertWidget = () => {
 };
 
 export default AdvertWidget;
+
