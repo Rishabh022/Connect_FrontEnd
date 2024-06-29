@@ -7,7 +7,7 @@ const UserImage = ({ image, size = "60px" }) => {
                 width={size}
                 height={size}
                 alt="user"
-                src={`https://connect-c6ou.onrender.com/uploads/${image}`}
+                src={`https://connect-c6ou.onrender.com/assets/${image}`}
             />
         </Box>
     );
